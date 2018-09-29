@@ -1,0 +1,14 @@
+{
+  "name": "algorithms",
+  "version": "0.0.1",
+  "description": "a practice repo for working with common data structures and solving some general algorithms",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Robert Woodall",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
