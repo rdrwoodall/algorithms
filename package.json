@@ -4,7 +4,9 @@
   "description": "a practice repo for working with common data structures and solving some general algorithms",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose",
+    "test-watch": "jest --watchAll --verbose",
+    "test-coverage": "jest --verbose --coverage"
   },
   "author": "Robert Woodall",
   "license": "ISC",
