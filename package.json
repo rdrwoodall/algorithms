@@ -12,5 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^23.6.0"
-  }
+  },
+  "jest": {
+    "testEnvironment": "node"
+ }
 }
