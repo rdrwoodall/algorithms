@@ -7,6 +7,14 @@ class LinkedList {
     this.tail = null;
   }
 
+  contains(value) {
+    if (!value) {
+      this.handleValueError('contains');
+    }
+
+    return LinkedListHelpers.findNode(this, value) !== null;
+  }
+
   addFront(value) {
     if (!value) {
       this.handleValueError('addFront');

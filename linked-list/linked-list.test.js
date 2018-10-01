@@ -16,7 +16,7 @@ describe('LinkedList instance', () => {
 describe('LinkedList.addFront method', () => {
   test('throws an Error if no value is passed as an argument', () => {
     const list = new LinkedList();
-    expect(list.addFront).toThrow(Error);
+    expect(list.addFront).toThrowError();
   });
 
   test('creates a new ListNode and assigns it to head property', () => {
@@ -33,7 +33,7 @@ describe('LinkedList.addFront method', () => {
 describe('LinkedList.addBack method', () => {
   test('throws an Error if no value is passed as an argument', () => {
     const list = new LinkedList();
-    expect(list.addBack).toThrow(Error);
+    expect(list.addBack).toThrowError();
   });
 
   test('creates a new node and assigns it to the tail property', () => {
@@ -114,4 +114,38 @@ describe('LinkedList.removeBack method', () => {
     expect(tail.value).toBe(2);
     expect(list.head.value).toBe(1);
   });
-})
+});
+
+describe('LinkedList.contains method', () => {
+  test('throws an error if no value is passed as an argument', () => {
+    const list = new LinkedList();
+    
+    expect(list.contains).toThrowError();
+  });
+
+  test('returns null if the list is empty', () => {
+    const list = new LinkedList();
+
+    const contains = list.contains(1);
+    expect(contains).toBe(false);
+  });
+
+  test('returns true if the list contains value', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    list.addBack(2);
+    list.addBack(3);
+
+    const contains = list.contains(2);
+    expect(contains).toBe(true);
+  });
+
+  test('returns false if the list contains value', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    list.addBack(2);
+
+    const contains = list.contains(3);
+    expect(contains).toBe(false);
+  });
+});
