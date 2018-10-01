@@ -13,31 +13,6 @@ describe('LinkedList instance', () => {
   });
 });
 
-describe('LinkedList.add method', () => {
-  test('throws an Error if no value is passed as an argument', () => {
-    const list = new LinkedList();
-    expect(list.addFront).toThrow(Error);
-  });
-
-  test('creates a new node and assigns it to the tail property', () => {
-    const list = new LinkedList();
-    
-    list.add(1);
-    expect(list.head).toBe(list.tail); // 1 node in list
-    expect(list.head).not.toBeNull();
-    expect(list.tail).not.toBeNull();
-
-    list.add(2);
-    expect(list.head).not.toBe(list.tail);
-    expect(list.head.value).toBe(1);
-    expect(list.tail.value).toBe(2);
-
-    list.add(3);
-    expect(list.head.value).toBe(1);
-    expect(list.tail.value).toBe(3);
-  });
-});
-
 describe('LinkedList.addFront method', () => {
   test('throws an Error if no value is passed as an argument', () => {
     const list = new LinkedList();
@@ -55,15 +30,88 @@ describe('LinkedList.addFront method', () => {
   });
 });
 
+describe('LinkedList.addBack method', () => {
+  test('throws an Error if no value is passed as an argument', () => {
+    const list = new LinkedList();
+    expect(list.addBack).toThrow(Error);
+  });
+
+  test('creates a new node and assigns it to the tail property', () => {
+    const list = new LinkedList();
+    
+    list.addBack(1);
+    expect(list.head).toBe(list.tail); // 1 node in list
+    expect(list.head).not.toBeNull();
+    expect(list.tail).not.toBeNull();
+
+    list.addBack(2);
+    expect(list.head).not.toBe(list.tail);
+    expect(list.head.value).toBe(1);
+    expect(list.tail.value).toBe(2);
+
+    list.addBack(3);
+    expect(list.head.value).toBe(1);
+    expect(list.tail.value).toBe(3);
+  });
+});
+
 describe('LinkedList.removeFront method', () => {
   test('returns null if the list is empty', () => {
     const list = new LinkedList();
+    
     const head = list.removeFront();
     expect(head).toBeNull();
   });
 
+  test('returns null if there is one item in the list', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    
+    const head = list.removeFront();
+    expect(head).toBeNull();
+    expect(list.head).toBeNull();
+    expect(list.tail).toBeNull();
+  });
+
   test('removes the front item and assigns head to the next node', () => {
     const list = new LinkedList();
+    list.addBack(1);
+    list.addBack(2);
+    list.addBack(3);
+
+    const head = list.removeFront();
+    expect(head).not.toBe(list.tail);
+    expect(head.value).toBe(2);
+    expect(list.tail.value).toBe(3);
   });
 });
 
+describe('LinkedList.removeBack method', () => {
+  test('returns null if the list is empty', () => {
+    const list = new LinkedList();
+    const tail = list.removeBack();
+    expect(tail).toBeNull();
+  });
+
+  test('returns null if there is one item in the list', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    
+    const tail = list.removeBack();
+    expect(tail).toBeNull();
+    expect(list.head).toBeNull();
+    expect(list.tail).toBeNull();
+  });
+
+  test('removes the last item and assigns tail to the next to last node', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    list.addBack(2);
+    list.addBack(3);
+
+    const tail = list.removeBack();
+    expect(tail).not.toBe(list.head);
+    expect(tail.value).toBe(2);
+    expect(list.head.value).toBe(1);
+  });
+})

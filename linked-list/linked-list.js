@@ -1,4 +1,5 @@
 const ListNode = require('./list-node');
+const LinkedListHelpers = require('../utils/helpers').LinkedListHelpers;
 
 class LinkedList {  
   constructor() {
@@ -6,9 +7,19 @@ class LinkedList {
     this.tail = null;
   }
 
-  add(value) {
+  addFront(value) {
+    if (!value) {
+      this.handleValueError('addFront');
+    }
+
+    const node = new ListNode(value);
+    this.head = node;
+    return this.head;
+  }
+
+  addBack(value) {
     if (!value) { // no value
-      this.handleValueError('add');
+      this.handleValueError('addBack');
     }
 
     const node = new ListNode(value);
@@ -25,27 +36,44 @@ class LinkedList {
     this.tail = node;
   }
 
-  addFront(value) {
-    if (!value) {
-      this.handleValueError('addFront');
-    }
-
-    const node = new ListNode(value);
-    this.head = node;
-    return this.head;
-  }
-
   removeFront() {
     if (!this.head) {
       return null;
     }
 
-    this.head = this.head.next;
+    if (this.head === this.tail) { // 1 node in list
+      this.head = null;
+      this.tail = null;
+      return this.head;
+    }
+
+    const next = this.head.next;
+    this.head = next;
+
     return this.head;
   }
 
+  removeBack() {
+    if (!this.tail) {
+      return null;
+    }
+
+    if (this.head === this.tail) { // 1 node in list
+      this.head = null;
+      this.tail = null;
+      return null;
+    }
+
+    const secondToLast = LinkedListHelpers.getSecondToLastNode(this);
+
+    if (secondToLast) {
+      this.tail = secondToLast;
+    }
+
+    return this.tail;
+  }
+
   // TODO: implement following methods and tests:
-  // removeFront
   // contains
 
   handleValueError(methodName) {
