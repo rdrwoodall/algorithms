@@ -1,10 +1,11 @@
 const ListNode = require('./list-node');
-const LinkedListHelpers = require('../utils/helpers').LinkedListHelpers;
+const LinkedListUtils = require('../utils/').LinkedListUtils;
 
 class LinkedList {  
   constructor() {
     this.head = null;
     this.tail = null;
+    this.nodeCount = 0;
   }
 
   contains(value) {
@@ -12,16 +13,18 @@ class LinkedList {
       this.handleValueError('contains');
     }
 
-    return LinkedListHelpers.findNode(this, value) !== null;
+    return LinkedListUtils.findNode(this, value) !== null;
   }
 
   addFront(value) {
-    if (!value) {
+    if (!value && LinkedListUtils.isInvalidFalsey(value)) {
       this.handleValueError('addFront');
     }
 
     const node = new ListNode(value);
     this.head = node;
+    this.nodeCount++;
+    
     return this.head;
   }
 
@@ -31,6 +34,7 @@ class LinkedList {
     }
 
     const node = new ListNode(value);
+    this.nodeCount++;
 
     if (!this.head) { // empty list
       this.head = node;
@@ -42,12 +46,16 @@ class LinkedList {
     const prevTail = this.tail;
     prevTail.next = node;
     this.tail = node;
+
+    return this.tail;
   }
 
   removeFront() {
     if (!this.head) {
       return null;
     }
+
+    this.nodeCount--;
 
     if (this.head === this.tail) { // 1 node in list
       this.head = null;
@@ -66,13 +74,15 @@ class LinkedList {
       return null;
     }
 
+    this.nodeCount--;
+
     if (this.head === this.tail) { // 1 node in list
       this.head = null;
       this.tail = null;
       return null;
     }
 
-    const secondToLast = LinkedListHelpers.getSecondToLastNode(this);
+    const secondToLast = LinkedListUtils.getSecondToLastNode(this);
 
     if (secondToLast) {
       this.tail = secondToLast;
@@ -81,11 +91,25 @@ class LinkedList {
     return this.tail;
   }
 
+  front() {
+    return this.head ? this.head : null;
+  }
+
+  back() {
+    return this.tail ? this.tail : null;
+  }
+
+  length() {
+    return this.nodeCount;
+  }
+
   // TODO: implement following methods and tests:
-  // contains
+  // min
+  // max
+  // util methods
 
   handleValueError(methodName) {
-    throw new Error(`${method} expectas a value as an argument`)
+    throw new Error(`${methodName} expectas a value as an argument`)
   }
 }
 

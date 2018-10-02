@@ -1,4 +1,8 @@
-class LinkedListHelpers {
+class LinkedListUtils {
+  static isInvalidFalsey(input) {
+    return (input === null) || (input === undefined);
+  }
+
   static findNode(linkedList, value) {
     if (!linkedList || !linkedList.head) { // no list or empty list
       return null;
@@ -35,5 +39,5 @@ class LinkedListHelpers {
 }
 
 module.exports = {
-  LinkedListHelpers
+  LinkedListUtils
 }

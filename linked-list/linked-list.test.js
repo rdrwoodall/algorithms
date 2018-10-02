@@ -149,3 +149,77 @@ describe('LinkedList.contains method', () => {
     expect(contains).toBe(false);
   });
 });
+
+describe('LinkedList.front method', () => {
+  test('returns null if the list is empty', () => {
+    const list = new LinkedList();
+    expect(list.front()).toBeNull();
+  });
+
+  test('returns the first node in the list', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    list.addBack(2);
+    list.addBack(3);
+
+    const front = list.front();
+    expect(front).toBe(list.head);
+    expect(front.value).toBe(1);
+  });
+});
+
+describe('LinkedList.back method', () => {
+  test('returns null if the list is empty', () => {
+    const list = new LinkedList();
+    const back = list.back();
+    expect(back).toBeNull();
+  });
+
+  test('returns the last node in the list', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    list.addBack(2);
+    list.addBack(3);
+
+    const back = list.back();
+    expect(back).toBe(list.tail);
+    expect(back.value).toBe(3);
+  });
+});
+
+describe('LinkedList.length method', () => {
+  test('is initialized to 0', () => {
+    const list = new LinkedList();
+    const length = list.length();
+    expect(length).toBe(0);
+  });
+
+  test('increments length by 1 after adding node', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    
+    let length = list.length();
+    expect(length).toBe(1);
+
+    list.addFront(0);
+    length = list.length();
+    expect(length).toBe(2);
+  });
+
+  test('decrements length by 1 after removing node', () => {
+    const list = new LinkedList();
+    list.addBack(1);
+    list.addBack(2);
+    
+    let length = list.length();
+    expect(length).toBe(2);
+
+    list.removeBack();
+    length = list.length();
+    expect(length).toBe(1);
+
+    list.removeFront();
+    length = list.length();
+    expect(length).toBe(0);
+  });
+});
