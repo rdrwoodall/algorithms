@@ -1,5 +1,5 @@
 const ListNode = require('./list-node');
-const LinkedListUtils = require('../utils/').LinkedListUtils;
+const LinkedListUtils = require('./linked-list-utils').LinkedListUtils;
 
 class LinkedList {  
   constructor() {
@@ -102,11 +102,6 @@ class LinkedList {
   length() {
     return this.nodeCount;
   }
-
-  // TODO: implement following methods and tests:
-  // min
-  // max
-  // util methods
 
   handleValueError(methodName) {
     throw new Error(`${methodName} expectas a value as an argument`)
