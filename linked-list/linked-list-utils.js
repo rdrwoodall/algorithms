@@ -23,9 +23,8 @@ class LinkedListUtils {
     return null;
   }
 
-  // returns the node prior to the node with the supplied value
-  // has an optional return of the valueNode
-  static findPrecedingNode(linkedList, value, includeValueNode = true) {
+  // returns the precedingNode to the valueNode and the valueNode
+  static findPrecedingNode(linkedList, value) {
     if (!linkedList || !linkedList.head) {
       return null;
     }
@@ -35,9 +34,7 @@ class LinkedListUtils {
 
     while(current) {
       if (current.value === value) {
-        return includeValueNode 
-          ? { preceding: prev, node: current }
-          : prev;
+        return { preceding: prev, node: current };
       }
 
       prev = current;
@@ -64,11 +61,11 @@ class LinkedListUtils {
   }
 
   static prependNode(linkedList, insert, before) {
-    // insert will be inserted between preceding and following nodes (hence alias for before node)
     let { preceding, node: following} = LinkedListUtils.findPrecedingNode(before);
 
     const node = new ListNode(insert);
 
+    // insert node in between preceding and following
     preceding.next = node;
     node.next = following;
 
