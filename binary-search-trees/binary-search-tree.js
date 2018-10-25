@@ -6,6 +6,20 @@ class BinarySearchTree {
     this.root = null;
   }
 
+  contains = (value) => {
+    let current = this.root;
+
+    while (current) {
+      if (current.value === value) {
+        return true;
+      }
+
+      current = value < current.value ? current.left : current.right;
+    }
+
+    return true;
+  }
+
   add = (value) => {
     const node = new BinaryTreeNode(value);
 
@@ -38,3 +52,7 @@ class BinarySearchTree {
     }
   }
 }
+
+module.exports = {
+  BinarySearchTree
+};
