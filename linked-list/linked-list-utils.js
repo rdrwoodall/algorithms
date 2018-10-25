@@ -61,6 +61,7 @@ class LinkedListUtils {
   }
 
   static prependNode(linkedList, insert, before) {
+    // destructure node as following
     let { preceding, node: following} = LinkedListUtils.findPrecedingNode(before);
 
     const node = new ListNode(insert);
@@ -68,6 +69,30 @@ class LinkedListUtils {
     // insert node in between preceding and following
     preceding.next = node;
     node.next = following;
+
+    return linkedList;
+  }
+
+  static minToFront(linkedList) {
+    let precedingMin = null;
+    let min = linkedList.head;
+    let current = linkedList.head.next; // start at second node
+
+    while (current) {
+      if (current.value < min.value) {
+        precedingMin = min;
+        min = current;
+      }
+
+      current = current.next;
+    }
+
+    // extract min
+    precedingMin.next = min.next;
+
+    // move to front
+    min.next = linkedList.head;
+    linkedList.head = min;
 
     return linkedList;
   }
