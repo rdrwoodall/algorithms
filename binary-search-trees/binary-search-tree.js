@@ -6,6 +6,10 @@ class BinarySearchTree {
     this.root = null;
   }
 
+  size = () => {
+    return BinarySearchTreeUtils.countNodes(this.root);
+  }
+
   contains = (value) => {
     let current = this.root;
 
@@ -51,6 +55,26 @@ class BinarySearchTree {
       }
     }
   }
+
+  static min = () => {
+    let current = this.root;
+
+    while (current.left) {
+      current = current.left;
+    }
+
+    return current.value;
+  };
+
+  static max = () => {
+    let current = this.root;
+
+    while (current.right) {
+      current = current.right;
+    }
+
+    return current.value;
+  };
 }
 
 module.exports = {
