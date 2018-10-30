@@ -6,6 +6,4 @@ class BinaryTreeNode {
   }
 }
 
-module.exports = { 
-  BinaryTreeNode 
-};
+module.exports = BinaryTreeNode;

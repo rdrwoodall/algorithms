@@ -56,6 +56,10 @@ class BinarySearchTree {
     }
   }
 
+  height = () => {
+    return BinaryTreeUtils.subTreeHeight(this.root);
+  }
+
   static min = () => {
     let current = this.root;
 
