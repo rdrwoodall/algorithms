@@ -1,4 +1,4 @@
-class BinarySearchTreeUtils {
+class BinaryTreeUtils {
   static nodeHasChild(node) {
     return node;
   }
@@ -19,5 +19,5 @@ class BinarySearchTreeUtils {
 }
 
 module.exports = {
-  BinarySearchTreeUtils
+  BinaryTreeUtils
 }

@@ -1,5 +1,5 @@
 const BinaryTreeNode = require('./binary-tree-node');
-const BinarySearchTreeUtils = require('./binary-search-tree-utils');
+const BinaryTreeUtils = require('./binary-tree-utils');
 
 class BinarySearchTree {
   constructor() {
@@ -7,7 +7,7 @@ class BinarySearchTree {
   }
 
   size = () => {
-    return BinarySearchTreeUtils.countNodes(this.root);
+    return BinaryTreeUtils.countNodes(this.root);
   }
 
   contains = (value) => {
@@ -35,18 +35,18 @@ class BinarySearchTree {
     let current = this.root;
 
     while (current) {
-      if (BinarySearchTreeUtils.traverseLeft(
+      if (BinaryTreeUtils.traverseLeft(
         current.value,
         value
       )) {
-        if (!BinarySearchTreeUtils.nodeHasChild(current.left)) {
+        if (!BinaryTreeUtils.nodeHasChild(current.left)) {
           current.left = node;
           return;
         }
 
         current = current.left;
       } else {
-        if (!BinarySearchTreeUtils.nodeHasChild(current.right)) {
+        if (!BinaryTreeUtils.nodeHasChild(current.right)) {
           current.right = node;
           return;
         }
