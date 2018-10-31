@@ -60,6 +60,19 @@ class BinarySearchTree {
     return BinaryTreeUtils.subTreeHeight(this.root);
   }
 
+  isBalanced = () => {
+    if (this.root === null) {
+      return false;
+    }
+
+    const leftTreeHeight = BinaryTreeUtils.subTreeHeight(this.root.left);
+    const rightTreeHeight = BinaryTreeUtils.subTreeHeight(this.root.right);
+
+    return leftTreeHeight === rightTreeHeight
+      || leftTreeHeight === (rightTreeHeight + 1)
+      || leftTreeHeight === (rightTreeHeight - 1);
+  }
+
   static min = () => {
     let current = this.root;
 
